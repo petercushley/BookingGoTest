@@ -1,5 +1,5 @@
 public class SupplierResponse {
-    String supplierID;
+    String supplier_id;
     String pickup;
     String dropoff;
 
