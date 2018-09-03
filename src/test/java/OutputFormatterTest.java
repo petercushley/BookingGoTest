@@ -21,9 +21,9 @@ public class OutputFormatterTest {
     @Test
     public void numberOfPassengersTest() {
         String output = formatter.formatForOutput(mockJson, 6);
-        String expected = "EXECUTIVE - 544426\n" +
-                "PEOPLE_CARRIER - 549569\n" +
-                "LUXURY_PEOPLE_CARRIER - 469991\n";
+        String expected = "PEOPLE_CARRIER - 549569\n" +
+                "LUXURY_PEOPLE_CARRIER - 469991\n" +
+                "MINIBUS - 550808\n";
         assertEquals(expected, output);
 
         String output2 = formatter.formatForOutput(mockJson, 18);
