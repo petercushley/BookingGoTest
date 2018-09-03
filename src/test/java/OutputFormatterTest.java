@@ -6,25 +6,15 @@ import static org.junit.Assert.assertEquals;
 
 public class OutputFormatterTest {
     OutputFormatter formatter = new OutputFormatter();
-    APIAccess apiAccess = new APIAccess();
+    String mockJson = "{\"supplier_id\":\"DAVE\",\"pickup\":\"51.470020,-0.454295\",\"dropoff\":\"3.410632,-2.157533\",\"options\":[{\"car_type\":\"EXECUTIVE\",\"price\":544426},{\"car_type\":\"PEOPLE_CARRIER\",\"price\":549569},{\"car_type\":\"LUXURY_PEOPLE_CARRIER\",\"price\":469991},{\"car_type\":\"MINIBUS\",\"price\":550808}]}";
 
     @Test
     public void formatForOutputTest() {
-        String pickup = "51.470020,-0.454295";
-        String dropoff = "3.410632,-2.157533";
-        String supplier = "dave";
-
-        Response response = apiAccess.getTaxisFromSupplier(pickup, dropoff, supplier);
-
-        String json = response.readEntity(String.class);
-
-        String output = formatter.formatForOutput(json);
-        System.out.println(output);
-//        String expected = "STANDARD - 366634\n" +
-//                "LUXURY - 294581\n" +
-//                "PEOPLE_CARRIER - 336096\n" +
-//                "LUXURY_PEOPLE_CARRIER - 734659\n" +
-//                "MINIBUS - 287235";
-//        assertEquals(expected, output);
+        String output = formatter.formatForOutput(mockJson, 16);
+        String expected = "EXECUTIVE - 544426\n" +
+                "PEOPLE_CARRIER - 549569\n" +
+                "LUXURY_PEOPLE_CARRIER - 469991\n" +
+                "MINIBUS - 550808\n";
+        assertEquals(expected, output);
     }
 }

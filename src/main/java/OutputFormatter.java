@@ -3,7 +3,7 @@ import com.google.gson.Gson;
 public class OutputFormatter {
     private Gson gson = new Gson();
 
-    public String formatForOutput(String jsonResponse) {
+    public String formatForOutput(String jsonResponse, int numPassengers) {
         Option[] options = getOptionsFromJson(jsonResponse);
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -19,6 +19,7 @@ public class OutputFormatter {
     }
 
     private Option[] getOptionsFromJson(String json) {
+        //TODO rewrite
         SupplierResponse response = null;
         try {
             System.out.println(json);
