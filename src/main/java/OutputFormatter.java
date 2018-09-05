@@ -37,7 +37,7 @@ public class OutputFormatter {
         //TODO rewrite
         SupplierResponse response = null;
         try {
-            System.out.println(json);
+            //System.out.println(json);
             response = gson.fromJson(json, SupplierResponse.class);
         } catch (IllegalStateException e) {
             //500 internal server error

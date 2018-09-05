@@ -1,8 +1,9 @@
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 public class Main {
+    private static ArrayList<String> jsons = new ArrayList<>();
     public static void main(String[] args) {
-        //TODO handle bad response and timeout
         if (args.length < 3) {
             System.out.println("Please enter your pickup location, dropoff location and the number of passengers.");
         } else {
@@ -13,19 +14,18 @@ public class Main {
             APIAccess apiAccess = new APIAccess();
             OutputFormatter outputFormatter = new OutputFormatter();
 
-            Response daveResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "dave");
+            getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "dave"));
+            getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "eric"));
+            getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "jeff"));
 
-            Response ericResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "eric");
-            Response jeffResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "jeff");
-
-
+            String[] jsonArray = new String[jsons.size()];
+            System.out.println(outputFormatter.formatForOutput(jsons.toArray(jsonArray), numPassengers));
         }
     }
 
-    public String getJsonFromResponse(Response response) {
+    private static void getJsonFromResponse(Response response) {
         if (response.getStatus() == 200) {
-            return response.readEntity(String.class);
+             jsons.add(response.readEntity(String.class));
         }
-        return null;
     }
 }
