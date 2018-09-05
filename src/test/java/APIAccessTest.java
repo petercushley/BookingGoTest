@@ -26,17 +26,17 @@ public class APIAccessTest {
 
         Response daveResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "dave");
 
-        System.out.println(daveResponse.readEntity(String.class));
+        //System.out.println(daveResponse.readEntity(String.class));
         assertEquals(200, daveResponse.getStatus());
 
         Response ericResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "eric");
 
-        System.out.println(ericResponse.readEntity(String.class));
+        //System.out.println(ericResponse.readEntity(String.class));
         assertEquals(200, ericResponse.getStatus());
 
         Response jeffResponse = apiAccess.getTaxisFromSupplier(pickup, dropoff, "jeff");
 
-        System.out.println(jeffResponse.readEntity(String.class));
+        //System.out.println(jeffResponse.readEntity(String.class));
         assertEquals(200, jeffResponse.getStatus());
     }
 }

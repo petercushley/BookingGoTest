@@ -40,6 +40,8 @@ public class OutputFormatter {
             System.out.println(json);
             response = gson.fromJson(json, SupplierResponse.class);
         } catch (IllegalStateException e) {
+            //500 internal server error
+            //HTML returned not JSON
             System.out.println(json);
         }
         Option[] options = response.options;

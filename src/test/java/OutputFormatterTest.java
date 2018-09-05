@@ -40,7 +40,7 @@ public class OutputFormatterTest {
         System.out.println(output);
         String expected = "PEOPLE_CARRIER - JEFF - 269857\n" +
                 "LUXURY_PEOPLE_CARRIER - JEFF - 207322\n" +
-                "MINIBUS - DAVE - 550808";
+                "MINIBUS - DAVE - 550808\n";
         assertEquals(expected, output);
     }
 }
