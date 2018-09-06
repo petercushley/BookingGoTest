@@ -44,12 +44,16 @@ public class Main {
         getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "eric"));
         getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "jeff"));
 
+        if (jsons.size() == 0) {
+            System.out.println("Something went wrong. Please try again making sure that you have entered valid pickup and dropoff coordinates");
+        }
+
         String[] jsonArray = new String[jsons.size()];
         return jsons.toArray(jsonArray);
     }
 
     public static void getJsonFromResponse(Response response) {
-        if (response.getStatus() == 200) {
+        if (response.getStatus() == 200) { //check that response is ok
              jsons.add(response.readEntity(String.class));
         }
     }

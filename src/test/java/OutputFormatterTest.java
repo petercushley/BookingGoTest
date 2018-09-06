@@ -12,11 +12,11 @@ public class OutputFormatterTest {
     @Test
     public void formatForOutputTest() {
         String[] responses = {mockDaveJson};
-        String output = formatter.formatForOutput(responses, 16);
-        String expected = "EXECUTIVE - 544426\n" +
-                "PEOPLE_CARRIER - 549569\n" +
-                "LUXURY_PEOPLE_CARRIER - 469991\n" +
-                "MINIBUS - 550808\n";
+        String output = formatter.formatForOutput(responses, 4);
+        String expected = "EXECUTIVE - DAVE - 544426\n" +
+                "PEOPLE_CARRIER - DAVE - 549569\n" +
+                "LUXURY_PEOPLE_CARRIER - DAVE - 469991\n" +
+                "MINIBUS - DAVE - 550808\n";
         assertEquals(expected, output);
     }
 
@@ -24,9 +24,9 @@ public class OutputFormatterTest {
     public void numberOfPassengersTest() {
         String[] responses = {mockDaveJson};
         String output = formatter.formatForOutput(responses, 6);
-        String expected = "PEOPLE_CARRIER - 549569\n" +
-                "LUXURY_PEOPLE_CARRIER - 469991\n" +
-                "MINIBUS - 550808\n";
+        String expected = "PEOPLE_CARRIER - DAVE - 549569\n" +
+                "LUXURY_PEOPLE_CARRIER - DAVE - 469991\n" +
+                "MINIBUS - DAVE - 550808\n";
         assertEquals(expected, output);
 
         String output2 = formatter.formatForOutput(responses, 18);
