@@ -1,3 +1,5 @@
+package Client;
+
 public class SupplierResponse {
     String supplier_id;
     String pickup;

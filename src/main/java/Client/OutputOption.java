@@ -1,3 +1,5 @@
+package Client;
+
 public class OutputOption {
     String car_type;
     long price;

@@ -1,3 +1,5 @@
+package Client;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -9,6 +11,22 @@ public class OutputFormatter {
     private HashMap<String, Integer> capacities;
 
     public String formatForOutput(String[] jsonResponses, int numPassengers) {
+        OutputOption[] outputToPrint = filterResults(jsonResponses, numPassengers);
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < outputToPrint.length; i++) {
+            builder.append(outputToPrint[i].car_type)
+                    .append(" - ")
+                    .append(outputToPrint[i].supplier)
+                    .append(" - ")
+                    .append(outputToPrint[i].price)
+                    .append("\n");
+        }
+
+        return builder.toString();
+    }
+
+    public OutputOption[] filterResults(String[] jsonResponses, int numPassengers) {
         ArrayList<OutputOption> allOptions = new ArrayList<>();
         for (int i = 0; i < jsonResponses.length; i++) {
             OutputOption[] capacityOptions = filterResultsByCapacity(getOptionsFromJson(jsonResponses[i]), numPassengers);
@@ -18,32 +36,12 @@ public class OutputFormatter {
         OutputOption[] toPriceFilter = new OutputOption[allOptions.size()];
         allOptions.toArray(toPriceFilter);
 
-        OutputOption[] finalOutput = filterResultsByPrice(toPriceFilter);
-
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < finalOutput.length; i++) {
-            builder.append(finalOutput[i].car_type)
-                    .append(" - ")
-                    .append(finalOutput[i].supplier)
-                    .append(" - ")
-                    .append(finalOutput[i].price)
-                    .append("\n");
-        }
-
-        return builder.toString();
+        return filterResultsByPrice(toPriceFilter);
     }
 
     private OutputOption[] getOptionsFromJson(String json) {
-        //TODO rewrite
-        SupplierResponse response = null;
-        try {
-            //System.out.println(json);
-            response = gson.fromJson(json, SupplierResponse.class);
-        } catch (IllegalStateException e) {
-            //500 internal server error
-            //HTML returned not JSON
-            System.out.println(json);
-        }
+        SupplierResponse response = gson.fromJson(json, SupplierResponse.class);
+
         Option[] options = response.options;
         OutputOption[] output = new OutputOption[options.length];
         for (int i = 0; i < options.length; i++) {

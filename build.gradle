@@ -16,6 +16,8 @@ dependencies {
     compile 'org.glassfish.jersey.core:jersey-client:'+jerseyVersion
     compile 'org.glassfish.jersey.core:jersey-common:'+jerseyVersion
     compile 'org.glassfish.jersey.inject:jersey-hk2:'+jerseyVersion
+    compile 'org.glassfish.jersey.containers:jersey-container-grizzly2-http:'+jerseyVersion
+    compile 'org.glassfish.jersey.connectors:jersey-grizzly-connector:'+jerseyVersion
 
     compile 'com.google.code.gson:gson:2.4'
 

@@ -1,3 +1,5 @@
+package Client;
+
 import org.glassfish.jersey.client.ClientProperties;
 
 import javax.ws.rs.ProcessingException;
