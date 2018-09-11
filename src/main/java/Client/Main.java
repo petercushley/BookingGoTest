@@ -22,7 +22,16 @@ public class Main {
                             + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
                     System.in.read();
                     server.stop();
+                } else {
+                    System.out.println("Please enter your pickup location, dropoff location and the number of passengers.");
                 }
+            } else  if (args.length == 2) {
+                String pickup = args[0];
+                String dropoff = args[1];
+
+                OutputFormatter outputFormatter = new OutputFormatter();
+
+                System.out.println(outputFormatter.formatForOutput(getDavePrices(pickup, dropoff), 0));
             } else {
                 System.out.println("Please enter your pickup location, dropoff location and the number of passengers.");
             }
@@ -43,6 +52,19 @@ public class Main {
         getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "dave"));
         getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "eric"));
         getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "jeff"));
+
+        if (jsons.size() == 0) {
+            System.out.println("Something went wrong. Please try again making sure that you have entered valid pickup and dropoff coordinates");
+        }
+
+        String[] jsonArray = new String[jsons.size()];
+        return jsons.toArray(jsonArray);
+    }
+
+    public static String[] getDavePrices(String pickup, String dropoff) {
+        APIAccess apiAccess = new APIAccess();
+
+        getJsonFromResponse(apiAccess.getTaxisFromSupplier(pickup, dropoff, "dave"));
 
         if (jsons.size() == 0) {
             System.out.println("Something went wrong. Please try again making sure that you have entered valid pickup and dropoff coordinates");

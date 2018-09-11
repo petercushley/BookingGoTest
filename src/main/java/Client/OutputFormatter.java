@@ -28,9 +28,16 @@ public class OutputFormatter {
 
     public OutputOption[] filterResults(String[] jsonResponses, int numPassengers) {
         ArrayList<OutputOption> allOptions = new ArrayList<>();
-        for (int i = 0; i < jsonResponses.length; i++) {
-            OutputOption[] capacityOptions = filterResultsByCapacity(getOptionsFromJson(jsonResponses[i]), numPassengers);
-            allOptions.addAll(Arrays.asList(capacityOptions));
+
+        if (numPassengers > 0) {
+            for (int i = 0; i < jsonResponses.length; i++) {
+                OutputOption[] capacityOptions = filterResultsByCapacity(getOptionsFromJson(jsonResponses[i]), numPassengers);
+                allOptions.addAll(Arrays.asList(capacityOptions));
+            }
+        } else {
+            for (int i = 0; i < jsonResponses.length; i++) {
+                allOptions.addAll(Arrays.asList(getOptionsFromJson(jsonResponses[i])));
+            }
         }
 
         OutputOption[] toPriceFilter = new OutputOption[allOptions.size()];

@@ -1,17 +1,30 @@
 #BookingGo Test Submission
 ##How to run
-This is a gradle project and must first be compiled by using gradle build (will also run unit tests).
+This is a gradle project and must first be compiled by using `gradle build` (will also run unit tests).
 
 In order for gradle run to accept command line arguments with --agrs, you must have gradle 4.9 or later installed.
+Also make sure that the arguments are surround by single quotes.
 ###Part 1
-To request data from the APIs and print to command line:
-gradle run --args '{pickup} {dropoff} {number of passengers}'
-###Part 2
-gradle run --args 'server'
-###Run Tests
-gradle test
+To request data from Dave's Taxis API:
 
-##About
+`gradle run --args '{pickup} {dropoff}'`
+
+Example: `gradle run --args '51.470020,-0.454295 51.00000,1.0000'`
+
+To request data from all APIs and filter by price:
+
+`gradle run --args '{pickup} {dropoff} {number of passengers}'`
+
+Example: `gradle run --args '51.470020,-0.454295 51.00000,1.0000 6'`
+###Part 2
+To run the server
+`gradle run --args 'server'`
+
+Example Query: `http://localhost:8080/myapp/server/taxis/?pickup=51.470020%2C-0.454295&dropoff=51.00000%2C1.0000&numPassengers=6`
+###Run Tests
+`gradle test`
+
+##About My Implementation
 For this test I used Jersey (an implementation of JAX-RS) for REST functionality (both on the client and server) and 
 Grizzly to run a HTTP server on localhost.
 
